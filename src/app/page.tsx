@@ -120,9 +120,8 @@ export default function HomePage() {
                   verification status.
                 </p>
                 <p>
-                  Inspired by <a href="https://thetrustproject.org" target="_blank" rel="noopener noreferrer" 
-                  className="text-[#A8D4E6] hover:underline">The Trust Project</a>, we&apos;ve adapted their 
-                  foundational principles for the AI age, creating a new standard for algorithmic journalism.
+                  We&apos;ve developed foundational principles for the AI age, 
+                  creating a new standard for algorithmic journalism and transparent news delivery.
                 </p>
               </div>
               <Link href="/how-it-works" className="inline-flex items-center gap-2 mt-6 text-[#A8D4E6] hover:text-[#D0F0FF] transition-colors">

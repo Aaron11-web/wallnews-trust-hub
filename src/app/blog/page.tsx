@@ -33,13 +33,13 @@ const blogPosts = [
   },
   {
     id: 3,
-    slug: 'trust-project-partnership',
-    title: 'Building on The Trust Project: Our Partnership Journey',
-    excerpt: 'How collaboration with The Trust Project shaped our approach to news transparency in the AI era.',
-    category: 'Partnership',
+    slug: 'building-trust-indicators',
+    title: 'How We Built Our 8 Trust Indicators',
+    excerpt: 'The journey of developing transparent metrics that help readers understand news quality and bias.',
+    category: 'Development',
     date: 'December 20, 2025',
     readTime: '4 min read',
-    image: '/blog/trust-project.jpg',
+    image: '/blog/indicators.jpg',
     featured: false,
   },
   {

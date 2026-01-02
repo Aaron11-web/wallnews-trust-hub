@@ -159,9 +159,8 @@ export default function IndicatorsPage() {
             8 Pillars of <span className="text-gradient">Trust</span>
           </h1>
           <p className="text-lg text-[#C8D8E4]/80 leading-relaxed max-w-2xl mx-auto">
-            Adapted from <a href="https://thetrustproject.org" target="_blank" rel="noopener noreferrer" 
-            className="text-[#A8D4E6] hover:underline">The Trust Project</a> for the AI era. 
-            Each indicator is designed to give you complete transparency about the news you consume.
+            Designed for the AI era. 
+            Each indicator gives you complete transparency about the news you consume.
           </p>
         </div>
       </section>

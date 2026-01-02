@@ -120,11 +120,7 @@ export default function Footer() {
           {/* Bottom */}
           <div className="mt-12 pt-8 border-t border-[#A8D4E6]/10 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-xs text-[#C8D8E4]/50">
-              © {new Date().getFullYear()} WallNews Trust Hub. Inspired by{' '}
-              <a href="https://thetrustproject.org" target="_blank" rel="noopener noreferrer" className="text-[#A8D4E6] hover:underline">
-                The Trust Project
-              </a>
-              .
+              © {new Date().getFullYear()} WallNews Trust Hub. All rights reserved.
             </p>
             <div className="flex gap-6 text-xs text-[#C8D8E4]/50">
               <Link href="/privacy" className="hover:text-[#A8D4E6] transition-colors">Privacy</Link>
