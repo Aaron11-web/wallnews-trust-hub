@@ -1,26 +1,325 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ══════════════════════════════════════════════════════════════
+   WallNews Trust Hub - Icy Silver Cosmic Theme
+   ══════════════════════════════════════════════════════════════ */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Space Background */
+  --color-space-deep: #0A1628;
+  --color-space-mid: #0D1E33;
+  --color-space-light: #142640;
+  
+  /* Icy Silver Accents */
+  --color-accent: #A8D4E6;
+  --color-accent-bright: #D0F0FF;
+  --color-accent-soft: #8EC8DC;
+  --color-silver: #C8D8E4;
+  --color-silver-light: #E4EEF4;
+  
+  /* Trust Colors */
+  --color-trust-green: #10B981;
+  --color-trust-blue: #3B82F6;
+  --color-trust-purple: #8B5CF6;
+  
+  /* Fonts */
+  --font-display: 'Orbitron', sans-serif;
+  --font-body: 'Inter', sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #0A1628;
+  --foreground: #E4EEF4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(180deg, #0A1628 0%, #0D1E33 50%, #142640 100%);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  min-height: 100vh;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Typography
+   ══════════════════════════════════════════════════════════════ */
+
+.font-display {
+  font-family: 'Orbitron', sans-serif;
+}
+
+.font-body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Gradient Text */
+.text-gradient {
+  background: linear-gradient(135deg, #D0F0FF 0%, #A8D4E6 50%, #8EC8DC 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-trust {
+  background: linear-gradient(135deg, #10B981 0%, #3B82F6 50%, #8B5CF6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Glassmorphism Components
+   ══════════════════════════════════════════════════════════════ */
+
+.glass-card {
+  background: rgba(13, 30, 51, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(168, 212, 230, 0.15);
+  border-radius: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(168, 212, 230, 0.3);
+  box-shadow: 0 8px 32px rgba(168, 212, 230, 0.1);
+  transform: translateY(-2px);
+}
+
+.glass-panel {
+  background: rgba(20, 38, 64, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(168, 212, 230, 0.1);
+}
+
+.glass-button {
+  background: linear-gradient(135deg, rgba(208, 240, 255, 0.15) 0%, rgba(168, 212, 230, 0.1) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(168, 212, 230, 0.2);
+  transition: all 0.3s ease;
+}
+
+.glass-button:hover {
+  background: linear-gradient(135deg, rgba(208, 240, 255, 0.25) 0%, rgba(168, 212, 230, 0.2) 100%);
+  border-color: rgba(168, 212, 230, 0.4);
+  box-shadow: 0 4px 20px rgba(168, 212, 230, 0.2);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Glow Effects
+   ══════════════════════════════════════════════════════════════ */
+
+.glow-soft {
+  box-shadow: 0 0 30px rgba(168, 212, 230, 0.15);
+}
+
+.glow-strong {
+  box-shadow: 0 0 50px rgba(208, 240, 255, 0.25);
+}
+
+.glow-text {
+  text-shadow: 0 0 20px rgba(168, 212, 230, 0.5);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Buttons
+   ══════════════════════════════════════════════════════════════ */
+
+.btn-primary {
+  background: linear-gradient(135deg, #D0F0FF 0%, #A8D4E6 100%);
+  color: #0A1628;
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 4px 25px rgba(168, 212, 230, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #A8D4E6;
+  font-weight: 500;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(168, 212, 230, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: rgba(168, 212, 230, 0.1);
+  border-color: rgba(168, 212, 230, 0.5);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Form Inputs
+   ══════════════════════════════════════════════════════════════ */
+
+.input-glass {
+  background: rgba(13, 30, 51, 0.5);
+  border: 1px solid rgba(168, 212, 230, 0.2);
+  border-radius: 0.75rem;
+  padding: 0.875rem 1rem;
+  color: #E4EEF4;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.input-glass::placeholder {
+  color: rgba(200, 216, 228, 0.5);
+}
+
+.input-glass:focus {
+  outline: none;
+  border-color: #A8D4E6;
+  box-shadow: 0 0 20px rgba(168, 212, 230, 0.2);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Animations
+   ══════════════════════════════════════════════════════════════ */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(168, 212, 230, 0.2); }
+  50% { box-shadow: 0 0 40px rgba(168, 212, 230, 0.4); }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+.animate-rotate-slow {
+  animation: rotate-slow 60s linear infinite;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Background Stars
+   ══════════════════════════════════════════════════════════════ */
+
+.stars-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, rgba(168, 212, 230, 0.3), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(208, 240, 255, 0.2), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(200, 216, 228, 0.4), transparent),
+    radial-gradient(2px 2px at 130px 80px, rgba(168, 212, 230, 0.2), transparent),
+    radial-gradient(1px 1px at 160px 120px, rgba(208, 240, 255, 0.3), transparent);
+  background-size: 200px 200px;
+  z-index: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Trust Indicator Cards
+   ══════════════════════════════════════════════════════════════ */
+
+.trust-card {
+  background: linear-gradient(145deg, rgba(13, 30, 51, 0.7) 0%, rgba(20, 38, 64, 0.5) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(168, 212, 230, 0.1);
+  border-radius: 1.25rem;
+  padding: 2rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.trust-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #A8D4E6, #D0F0FF, #8EC8DC);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.trust-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(168, 212, 230, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.trust-card:hover::before {
+  opacity: 1;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Scrollbar
+   ══════════════════════════════════════════════════════════════ */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A1628;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #A8D4E6 0%, #8EC8DC 100%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #D0F0FF 0%, #A8D4E6 100%);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Selection
+   ══════════════════════════════════════════════════════════════ */
+
+::selection {
+  background: rgba(168, 212, 230, 0.3);
+  color: #E4EEF4;
 }
