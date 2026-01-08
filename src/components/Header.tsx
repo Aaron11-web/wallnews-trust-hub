@@ -17,26 +17,26 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
-      <div className="glass-panel border-b border-[#A8D4E6]/10">
+      <div className="bg-slate-900/60 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group">
               {/* W + Globe Logo */}
               <div className="relative w-10 h-10 md:w-12 md:h-12">
-                <svg viewBox="0 0 50 50" className="w-full h-full">
+                <svg viewBox="0 0 50 50" className="w-full h-full drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]">
                   <defs>
                     <linearGradient id="headerGlobeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#D0F0FF" />
-                      <stop offset="50%" stopColor="#A8D4E6" />
-                      <stop offset="100%" stopColor="#8EC8DC" />
+                      <stop offset="0%" stopColor="#FFFFFF" />
+                      <stop offset="50%" stopColor="#E2E8F0" />
+                      <stop offset="100%" stopColor="#94A3B8" />
                     </linearGradient>
                   </defs>
                   {/* Globe circle */}
                   <circle cx="25" cy="25" r="20" fill="none" stroke="url(#headerGlobeGrad)" strokeWidth="1.5" />
                   {/* Latitude lines */}
-                  <ellipse cx="25" cy="25" rx="15" ry="6" fill="none" stroke="#A8D4E6" strokeWidth="0.8" opacity="0.6" />
-                  <ellipse cx="25" cy="25" rx="10" ry="4" fill="none" stroke="#A8D4E6" strokeWidth="0.6" opacity="0.4" />
+                  <ellipse cx="25" cy="25" rx="15" ry="6" fill="none" stroke="#E2E8F0" strokeWidth="0.8" opacity="0.6" />
+                  <ellipse cx="25" cy="25" rx="10" ry="4" fill="none" stroke="#E2E8F0" strokeWidth="0.6" opacity="0.4" />
                   {/* W letter */}
                   <text
                     x="25"
@@ -46,16 +46,17 @@ export default function Header() {
                     fontSize="16"
                     fontWeight="bold"
                     fontFamily="Orbitron, sans-serif"
+                    className="drop-shadow-md"
                   >
                     W
                   </text>
                 </svg>
               </div>
               <div className="flex flex-col">
-                <span className="font-display text-lg md:text-xl font-bold text-gradient">
+                <span className="font-display text-lg md:text-xl font-bold text-white tracking-widest">
                   WallNews
                 </span>
-                <span className="text-[10px] md:text-xs text-[#A8D4E6] tracking-widest uppercase">
+                <span className="text-[10px] md:text-xs text-cyan-400 tracking-[0.2em] uppercase font-bold">
                   Trust Hub
                 </span>
               </div>
@@ -67,8 +68,8 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="px-4 py-2 text-sm font-medium text-[#C8D8E4] hover:text-[#D0F0FF] 
-                           transition-colors rounded-full hover:bg-[#A8D4E6]/10"
+                  className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white 
+                           transition-all rounded-full hover:bg-white/5 border border-transparent hover:border-white/10"
                 >
                   {link.label}
                 </Link>

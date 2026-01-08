@@ -48,36 +48,36 @@ export default function HomePage() {
       <section className="min-h-[90vh] flex items-center justify-center px-4 py-20">
         <div className="max-w-6xl mx-auto text-center">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-button mb-8 animate-fade-in-up">
-            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-sm text-[#C8D8E4]">Pioneering Trust in AI News</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/50 border border-white/10 backdrop-blur-md mb-8 animate-fade-in-up">
+            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_#22d3ee]" />
+            <span className="text-sm text-slate-300 tracking-wide font-medium">Pioneering Trust in AI News</span>
           </div>
 
           {/* Main Title */}
-          <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold mb-6 animate-fade-in-up"
+          <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold mb-6 animate-fade-in-up drop-shadow-lg"
               style={{ animationDelay: '0.1s' }}>
-            <span className="text-gradient">Building Trust</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-cyan-400 to-blue-500">Building Trust</span>
             <br />
-            <span className="text-[#E4EEF4]">in the Age of AI</span>
+            <span className="text-white">in the Age of AI</span>
           </h1>
 
           {/* Subtitle */}
-          <p className="text-lg md:text-xl text-[#C8D8E4]/80 max-w-3xl mx-auto mb-10 leading-relaxed animate-fade-in-up"
+          <p className="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed animate-fade-in-up font-light"
              style={{ animationDelay: '0.2s' }}>
             WallNews Trust Hub brings transparency to AI-powered journalism through 
-            <span className="text-[#A8D4E6]"> open standards</span>, 
-            <span className="text-[#A8D4E6]"> bias detection</span>, and 
-            <span className="text-[#A8D4E6]"> verified sources</span>. 
+            <span className="text-cyan-300 font-medium"> open standards</span>, 
+            <span className="text-cyan-300 font-medium"> bias detection</span>, and 
+            <span className="text-cyan-300 font-medium"> verified sources</span>. 
             Because trust isn&apos;t given—it&apos;s earned.
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-in-up"
                style={{ animationDelay: '0.3s' }}>
-            <Link href="/indicators" className="btn-primary text-base px-8 py-4">
+            <Link href="/indicators" className="bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 px-8 py-4 rounded-full font-semibold transition-all shadow-[0_0_15px_rgba(34,211,238,0.15)] hover:shadow-[0_0_25px_rgba(34,211,238,0.3)] backdrop-blur-md">
               Explore Trust Indicators
             </Link>
-            <Link href="/join" className="btn-secondary text-base px-8 py-4">
+            <Link href="/join" className="bg-white/5 hover:bg-white/10 text-white border border-white/10 px-8 py-4 rounded-full font-semibold transition-all backdrop-blur-md hover:border-white/20">
               Join the Movement
             </Link>
           </div>
@@ -86,11 +86,11 @@ export default function HomePage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 animate-fade-in-up"
                style={{ animationDelay: '0.4s' }}>
             {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="font-display text-3xl md:text-4xl font-bold text-gradient mb-1">
+              <div key={index} className="text-center group">
+                <div className="font-display text-3xl md:text-4xl font-bold text-white mb-1 drop-shadow-md group-hover:text-cyan-200 transition-colors">
                   {stat.value}
                 </div>
-                <div className="text-sm text-[#C8D8E4]/60">{stat.label}</div>
+                <div className="text-sm text-slate-500 font-medium tracking-wider uppercase">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -100,22 +100,23 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════════════════════
           WHY TRUST MATTERS
           ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-4 relative">
+        <div className="absolute inset-0 bg-slate-900/30 skew-y-1 transform -z-10" />
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Left: Content */}
             <div>
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-[#E4EEF4] mb-6">
-                Why <span className="text-gradient">Trust</span> Matters Now More Than Ever
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-6">
+                Why <span className="text-cyan-400">Trust</span> Matters Now More Than Ever
               </h2>
-              <div className="space-y-4 text-[#C8D8E4]/80 leading-relaxed">
+              <div className="space-y-4 text-slate-400 leading-relaxed text-lg font-light">
                 <p>
                   In an era of information overload, distinguishing fact from fiction has become 
                   increasingly challenging. AI has the power to either exacerbate this problem—or solve it.
                 </p>
                 <p>
                   At WallNews, we chose the latter. Our Trust Hub is built on the belief that 
-                  <strong className="text-[#A8D4E6]"> transparency breeds trust</strong>. Every article 
+                  <strong className="text-cyan-300 font-medium"> transparency breeds trust</strong>. Every article 
                   you read comes with a complete breakdown of its sources, potential biases, and 
                   verification status.
                 </p>
@@ -124,21 +125,21 @@ export default function HomePage() {
                   creating a new standard for algorithmic journalism and transparent news delivery.
                 </p>
               </div>
-              <Link href="/how-it-works" className="inline-flex items-center gap-2 mt-6 text-[#A8D4E6] hover:text-[#D0F0FF] transition-colors">
+              <Link href="/how-it-works" className="inline-flex items-center gap-2 mt-6 text-cyan-400 hover:text-cyan-300 transition-colors font-medium group">
                 Learn how our AI works
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </Link>
             </div>
 
             {/* Right: X Thread Embed */}
-            <div className="glass-card p-6">
+            <div className="glass-card p-6 bg-slate-800/40 border border-white/5 shadow-2xl backdrop-blur-xl rounded-2xl">
               <div className="flex items-center gap-2 mb-4">
-                <svg className="w-5 h-5 text-[#A8D4E6]" viewBox="0 0 24 24" fill="currentColor">
+                <svg className="w-5 h-5 text-slate-400" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                 </svg>
-                <span className="text-sm font-medium text-[#C8D8E4]">Our Vision Thread</span>
+                <span className="text-sm font-medium text-slate-300">Our Vision Thread</span>
               </div>
               <TwitterEmbed tweetUrl="https://x.com/willwallnews/status/2007077492444803208" />
             </div>

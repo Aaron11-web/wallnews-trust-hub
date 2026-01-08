@@ -2,26 +2,26 @@
 @import "tailwindcss";
 
 /* ══════════════════════════════════════════════════════════════
-   WallNews Trust Hub - Icy Silver Cosmic Theme
+   WallNews Trust Hub - Orca Atmosphere Theme
    ══════════════════════════════════════════════════════════════ */
 
 @theme inline {
-  /* Space Background */
-  --color-space-deep: #0A1628;
-  --color-space-mid: #0D1E33;
-  --color-space-light: #142640;
+  /* Atmosphere Backgrounds (Slate) */
+  --color-space-deep: #020617;
+  --color-space-mid: #0F172A;
+  --color-space-light: #1E293B;
   
-  /* Icy Silver Accents */
-  --color-accent: #A8D4E6;
-  --color-accent-bright: #D0F0FF;
-  --color-accent-soft: #8EC8DC;
-  --color-silver: #C8D8E4;
-  --color-silver-light: #E4EEF4;
+  /* Icy Silver & Cyan Accents */
+  --color-accent: #22D3EE;     /* Cyan 400 */
+  --color-accent-bright: #F0F9FF; /* Cyan 50 */
+  --color-accent-soft: #67E8F9;   /* Cyan 300 */
+  --color-silver: #E2E8F0;       /* Slate 200 */
+  --color-silver-light: #F8FAFC; /* Slate 50 */
   
-  /* Trust Colors */
-  --color-trust-green: #10B981;
-  --color-trust-blue: #3B82F6;
-  --color-trust-purple: #8B5CF6;
+  /* Trust Colors - Brighter */
+  --color-trust-green: #34D399;
+  --color-trust-blue: #60A5FA;
+  --color-trust-purple: #A78BFA;
   
   /* Fonts */
   --font-display: 'Orbitron', sans-serif;
@@ -29,8 +29,8 @@
 }
 
 :root {
-  --background: #0A1628;
-  --foreground: #E4EEF4;
+  --background: #0F172A; /* Slate 900 */
+  --foreground: #F1F5F9; /* Slate 100 */
 }
 
 * {
@@ -42,7 +42,8 @@ html {
 }
 
 body {
-  background: linear-gradient(180deg, #0A1628 0%, #0D1E33 50%, #142640 100%);
+  /* Orca Atmosphere gradient */
+  background: linear-gradient(180deg, #1E293B 0%, #0F172A 50%, #020617 100%);
   color: var(--foreground);
   font-family: var(--font-body);
   min-height: 100vh;
@@ -76,28 +77,31 @@ body {
 }
 
 /* ══════════════════════════════════════════════════════════════
-   Glassmorphism Components
+   Glassmorphism Components - Orca Atmosphere
    ══════════════════════════════════════════════════════════════ */
 
 .glass-card {
-  background: rgba(13, 30, 51, 0.6);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(168, 212, 230, 0.15);
+  /* High transparency, slate tint */
+  background: rgba(30, 41, 59, 0.4); 
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 1.5rem;
   transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .glass-card:hover {
-  border-color: rgba(168, 212, 230, 0.3);
-  box-shadow: 0 8px 32px rgba(168, 212, 230, 0.1);
+  background: rgba(51, 65, 85, 0.5);
+  border-color: rgba(34, 211, 238, 0.4); /* Cyan accent on hover */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(34, 211, 238, 0.1);
   transform: translateY(-2px);
 }
 
 .glass-panel {
-  background: rgba(20, 38, 64, 0.5);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(15, 23, 42, 0.3);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(168, 212, 230, 0.1);
 }
 
