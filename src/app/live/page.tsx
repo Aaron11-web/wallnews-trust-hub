@@ -1,152 +1,157 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { SuperNewsCard } from '@/lib/api';
+import SuperNewsCardComponent from '@/components/SuperNewsCard';
 import staticData from '@/data/supercards.json';
-
-// Simple Icons
-const IconHome = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-    <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-  </svg>
-);
-
-const IconDiscover = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M15.042 21.672 13.684 16.6m0 0-2.51 2.225.569-9.47 5.227 7.917-3.286-.672ZM12 2.25V4.5m5.834.166-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243-1.59-1.59" />
-  </svg>
-);
-
-const IconSaved = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
-  </svg>
-);
-
-const IconShare = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
-  </svg>
-);
-
-const IconBookmark = () => (
-   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
-   </svg>
-);
-
-const LogoWallNews = () => (
-  <div className="flex items-center gap-2">
-    <div className="relative w-8 h-8 flex items-center justify-center">
-       {/* Globe Icon simplified */}
-       <svg className="w-full h-full text-black" viewBox="0 0 24 24" fill="currentColor">
-         <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM4.07 13H8.24l2.43 7.82C6.73 20.25 4.29 17.22 4.07 13ZM2 12c0-.68.09-1.34.25-1.97h5.18l-1.6 6.38c-1.35-1.12-2.31-2.7-2.83-4.41H2Zm9 9.88l-2.72-8.88h7.44L13 21.88c-.32.08-.66.12-1 .12s-.68-.04-1-.12ZM14.93 11H9.07L7.82 6h8.36l-1.25 5ZM11.23 2.16l2.16 3.84H10.61l.62-3.84Zm4.7 18.66l2.43-7.82h4.17c-.22 4.22-2.66 7.25-6.6 7.82Zm3.82-9.82h-5.18l1.6-6.38c1.35 1.12 2.31 2.7 2.83 4.41h1V11Z"/>
-       </svg>
-    </div>
-    <span className="font-bold text-xl tracking-tight text-black">WallNews</span>
-  </div>
-);
 
 export default function LivePage() {
   const [cards, setCards] = useState<SuperNewsCard[]>([]);
   const [loading, setLoading] = useState(true);
+  const [exportedAt, setExportedAt] = useState<string | null>(null);
 
   useEffect(() => {
     // Load static data
     const data = staticData as { exportedAt: string; count: number; superCards: SuperNewsCard[] };
     setCards(data.superCards || []);
+    setExportedAt(data.exportedAt);
     setLoading(false);
   }, []);
 
+  const formatDate = (dateStr: string) => {
+    try {
+      return new Date(dateStr).toLocaleString('fr-FR', {
+        dateStyle: 'long',
+        timeStyle: 'short',
+      });
+    } catch {
+      return dateStr;
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-neutral-100 flex justify-center font-sans selection:bg-cyan-200 selection:text-black">
-      {/* Mobile Frame Simulation */}
-      <div className="w-full max-w-[430px] bg-black min-h-screen shadow-2xl relative flex flex-col">
-        
-        {/* App Header (White background as per screenshot) */}
-        <header className="bg-white px-5 pt-12 pb-2 rounded-b-xl relative z-10">
-          <div className="flex justify-center mb-6">
-             <LogoWallNews />
+    <div className="min-h-screen">
+      {/* Header Section */}
+      <section className="pt-32 pb-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          {/* Breadcrumb */}
+          <div className="flex items-center gap-2 text-sm text-slate-500 mb-6">
+            <Link href="/" className="hover:text-cyan-400 transition-colors">Home</Link>
+            <span>/</span>
+            <span className="text-cyan-400">Live News</span>
           </div>
-          
-          {/* Navigation Tabs */}
-          <div className="flex justify-between items-center text-xs font-bold tracking-wider text-gray-400 border-t border-gray-100 pt-4">
-            <button className="hover:text-black transition-colors uppercase">Worldwide</button>
-            <div className="relative">
-                <button className="text-black uppercase pb-1">Live Feed</button>
-                <div className="absolute -bottom-[9px] left-0 right-0 h-[2px] bg-black"></div>
+
+          {/* Title */}
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-cyan-400 to-blue-500">
+                  Live
+                </span>{' '}
+                SuperNewsCards
+              </h1>
+              <p className="text-slate-400 text-lg max-w-2xl">
+                Actualités synthétisées par l&apos;IA WallNews avec vérification multi-sources, 
+                citations traçables et analyse de confiance.
+              </p>
             </div>
-            <button className="hover:text-black transition-colors uppercase">My Pod</button>
           </div>
-        </header>
 
-        {/* Scrollable Content */}
-        <main className="flex-1 overflow-y-auto bg-black p-4 space-y-4 no-scrollbar">
-          {loading ? (
-             <div className="space-y-4 animate-pulse">
-                {[1, 2, 3].map((i) => (
-                  <div key={i} className="h-40 bg-slate-900 rounded-2xl border border-slate-800" />
-                ))}
-             </div>
-          ) : (
-            cards.map((card, idx) => (
-              <div 
-                key={idx} 
-                className="group relative bg-slate-900/40 backdrop-blur-xl rounded-2xl p-5 border border-white/5 hover:border-cyan-500/30 transition-all duration-300 shadow-lg shadow-black/50"
-              >
-                {/* Glow Effect Top */}
-                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent opacity-50" />
-
-                <div className="relative z-10">
-                    <div className="flex justify-between items-start mb-2">
-                        <span className="text-[10px] font-bold tracking-widest text-slate-500 uppercase">Worldwide News</span>
-                        <div className="flex gap-3 text-slate-500">
-                             <button className="hover:text-cyan-400 transition-colors"><IconBookmark /></button>
-                             <button className="hover:text-cyan-400 transition-colors"><IconShare /></button>
-                        </div>
-                    </div>
-
-                    <h3 className="text-lg font-bold text-white leading-tight mb-2 line-clamp-2">
-                        {card.title || "Headline unavailable"}
-                    </h3>
-
-                    <p className="text-sm text-slate-400 mb-3 line-clamp-2 font-light">
-                        {card.summary || "No summary available for this story."}
-                    </p>
-
-                    <div className="flex items-center justify-between text-[11px] text-slate-500 font-medium">
-                        <div className="flex items-center gap-2">
-                            <span className="text-cyan-500 bg-cyan-500/10 px-2 py-0.5 rounded-full">{card.sourceCount || 1} sources</span>
-                            <span className="text-slate-600">•</span>
-                            <span>{new Date().toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'})}</span>
-                        </div>
-                    </div>
-                </div>
+          {/* Status Bar */}
+          <div className="flex items-center gap-4 mb-8 flex-wrap">
+            <div className="px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-sm flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-cyan-400" />
+              Données statiques
+            </div>
+            
+            <div className="px-4 py-2 rounded-full bg-slate-800/50 border border-white/10 text-slate-400 text-sm">
+              {cards.length} SuperNewsCard{cards.length !== 1 ? 's' : ''}
+            </div>
+            
+            {exportedAt && (
+              <div className="text-sm text-slate-500">
+                Dernière mise à jour: {formatDate(exportedAt)}
               </div>
-            ))
-          )}
-          
-          {/* Spacer for bottom nav */}
-          <div className="h-20" />
-        </main>
-
-        {/* Floating Bottom Navigation */}
-        <div className="absolute bottom-6 left-6 right-6 h-16 bg-slate-900/90 backdrop-blur-2xl rounded-full border border-white/10 flex items-center justify-around px-2 shadow-2xl z-20">
-             <button className="flex flex-col items-center gap-1 p-2 text-cyan-400">
-                <IconHome />
-                <span className="text-[10px] font-medium">Home</span>
-             </button>
-             <button className="flex flex-col items-center gap-1 p-2 text-slate-500 hover:text-white transition-colors">
-                <IconDiscover />
-                <span className="text-[10px] font-medium">Discover</span>
-             </button>
-             <button className="flex flex-col items-center gap-1 p-2 text-slate-500 hover:text-white transition-colors">
-                <IconSaved />
-                <span className="text-[10px] font-medium">Saved</span>
-             </button>
+            )}
+          </div>
         </div>
+      </section>
 
-      </div>
+      {/* Content Section */}
+      <section className="pb-20 px-4">
+        <div className="max-w-6xl mx-auto">
+          {/* Loading State */}
+          {loading && (
+            <div className="flex flex-col items-center justify-center py-20">
+              <div className="w-12 h-12 border-4 border-cyan-500/30 border-t-cyan-500 rounded-full animate-spin mb-4" />
+              <p className="text-slate-400">Chargement des SuperNewsCards...</p>
+            </div>
+          )}
+
+          {/* Empty State */}
+          {!loading && cards.length === 0 && (
+            <div className="glass-card p-8 text-center">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-cyan-500/20 flex items-center justify-center">
+                <svg className="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2">Aucune SuperNewsCard</h3>
+              <p className="text-slate-400 mb-4">
+                Les données n&apos;ont pas encore été exportées. Lancez le script d&apos;export depuis le backend.
+              </p>
+              <div className="text-sm text-slate-500 font-mono bg-slate-800 px-4 py-2 rounded-lg inline-block">
+                node scripts/export-supercards.js
+              </div>
+            </div>
+          )}
+
+          {/* Cards Grid */}
+          {!loading && cards.length > 0 && (
+            <div className="grid gap-6">
+              {cards.map((card) => (
+                <SuperNewsCardComponent key={card.id} card={card} />
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Info Section */}
+      <section className="py-16 px-4 border-t border-white/5">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="glass-card p-6">
+              <div className="w-10 h-10 rounded-lg bg-cyan-500/20 flex items-center justify-center mb-4">
+                <span className="text-xl">🔍</span>
+              </div>
+              <h3 className="font-display text-lg font-bold text-white mb-2">Multi-Sources</h3>
+              <p className="text-slate-400 text-sm">
+                Chaque SuperNewsCard agrège minimum 2 sources indépendantes pour une vue complète.
+              </p>
+            </div>
+            <div className="glass-card p-6">
+              <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center mb-4">
+                <span className="text-xl">✓</span>
+              </div>
+              <h3 className="font-display text-lg font-bold text-white mb-2">Citations Traçables</h3>
+              <p className="text-slate-400 text-sm">
+                Chaque affirmation est liée à sa source via des citations [1], [2], [3] cliquables.
+              </p>
+            </div>
+            <div className="glass-card p-6">
+              <div className="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center mb-4">
+                <span className="text-xl">🤖</span>
+              </div>
+              <h3 className="font-display text-lg font-bold text-white mb-2">WallBot Analysis</h3>
+              <p className="text-slate-400 text-sm">
+                Notre IA analyse les divergences et incertitudes pour vous aider à forger votre opinion.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
